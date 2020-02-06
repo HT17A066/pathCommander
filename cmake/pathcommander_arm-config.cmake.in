@@ -1,0 +1,54 @@
+# pathCommander_arm CMake config file
+#
+# This file sets the following variables:
+# pathCommander_arm_FOUND - Always TRUE.
+# pathCommander_arm_INCLUDE_DIRS - Directories containing the pathCommander_arm include files.
+# pathCommander_arm_IDL_DIRS - Directories containing the pathCommander_arm IDL files.
+# pathCommander_arm_LIBRARIES - Libraries needed to use pathCommander_arm.
+# pathCommander_arm_DEFINITIONS - Compiler flags for pathCommander_arm.
+# pathCommander_arm_VERSION - The version of pathCommander_arm found.
+# pathCommander_arm_VERSION_MAJOR - The major version of pathCommander_arm found.
+# pathCommander_arm_VERSION_MINOR - The minor version of pathCommander_arm found.
+# pathCommander_arm_VERSION_REVISION - The revision version of pathCommander_arm found.
+# pathCommander_arm_VERSION_CANDIDATE - The candidate version of pathCommander_arm found.
+
+message(STATUS "Found pathCommander_arm-@PROJECT_VERSION@")
+set(pathCommander_arm_FOUND TRUE)
+
+find_package(<dependency> REQUIRED)
+
+#set(pathCommander_arm_INCLUDE_DIRS
+#    "@CMAKE_INSTALL_PREFIX@/include/@PROJECT_NAME_LOWER@-@PROJECT_VERSION_MAJOR@"
+#    ${<dependency>_INCLUDE_DIRS}
+#    )
+#
+#set(pathCommander_arm_IDL_DIRS
+#    "@CMAKE_INSTALL_PREFIX@/include/@PROJECT_NAME_LOWER@-@PROJECT_VERSION_MAJOR@/idl")
+set(pathCommander_arm_INCLUDE_DIRS
+    "@CMAKE_INSTALL_PREFIX@/include/@CPACK_PACKAGE_FILE_NAME@"
+    ${<dependency>_INCLUDE_DIRS}
+    )
+set(pathCommander_arm_IDL_DIRS
+    "@CMAKE_INSTALL_PREFIX@/include/@CPACK_PACKAGE_FILE_NAME@/idl")
+
+
+if(WIN32)
+    set(pathCommander_arm_LIBRARIES
+        "@CMAKE_INSTALL_PREFIX@/@LIB_INSTALL_DIR@/@CMAKE_SHARED_LIBRARY_PREFIX@@PROJECT_NAME_LOWER@@CMAKE_STATIC_LIBRARY_SUFFIX@"
+        ${<dependency>_LIBRARIES}
+        )
+else(WIN32)
+    set(pathCommander_arm_LIBRARIES
+        "@CMAKE_INSTALL_PREFIX@/@LIB_INSTALL_DIR@/@CMAKE_SHARED_LIBRARY_PREFIX@@PROJECT_NAME_LOWER@@CMAKE_SHARED_LIBRARY_SUFFIX@"
+        ${<dependency>_LIBRARIES}
+        )
+endif(WIN32)
+
+set(pathCommander_arm_DEFINITIONS ${<dependency>_DEFINITIONS})
+
+set(pathCommander_arm_VERSION @PROJECT_VERSION@)
+set(pathCommander_arm_VERSION_MAJOR @PROJECT_VERSION_MAJOR@)
+set(pathCommander_arm_VERSION_MINOR @PROJECT_VERSION_MINOR@)
+set(pathCommander_arm_VERSION_REVISION @PROJECT_VERSION_REVISION@)
+set(pathCommander_arm_VERSION_CANDIDATE @PROJECT_VERSION_CANDIDATE@)
+
